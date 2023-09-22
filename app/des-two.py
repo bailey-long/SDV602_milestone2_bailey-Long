@@ -2,12 +2,23 @@ import PySimpleGUI as sg
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import sys
+
+# Get username from the login screen
+if "--username" in sys.argv:
+    # Find the index of "--username" in the command-line arguments
+    index = sys.argv.index("--username")
+
+    # Get the username value from the next argument
+    username = sys.argv[index + 1]
+
 
 # Define the PySimpleGUI layout
 layout = [
+    [sg.Text(f"Welcome, {username}!")],
     [sg.Text("Select a CSV file:")],
     [sg.InputText(key="csv_file"), sg.FileBrowse()],
-    [sg.Button("Load Data"), sg.Button("Exit")],
+    [sg.Button("Load"), sg.Button("Exit")],
     [sg.Canvas(key="-CANVAS-")],
 ]
 
@@ -21,7 +32,7 @@ while True:
     if event == sg.WIN_CLOSED or event == "Exit":
         break
 
-    if event == "Load Data":
+    if event == "Load":
         # Get the selected CSV file path
         csv_file = values["csv_file"]
 

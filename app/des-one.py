@@ -12,8 +12,8 @@ if "--username" in sys.argv:
 
 # Define the GUI layout
 layout = [
-    [sg.Text("Select a CSV file:")],
     [sg.Text(f"Welcome, {username}!")],
+    [sg.Text("Select a CSV file:")],
     [sg.InputText(key="-FILE-"), sg.FileBrowse()],
     [sg.Button("Load"), sg.Button("Exit")],
     [sg.Multiline("", size=(150, 30), key="-TABLE-")],
@@ -45,6 +45,7 @@ while True:
     if event == sg.WIN_CLOSED or event == "Exit":
         break
     if event == "Load":
+        # Get the selected CSV file path
         file_path = values["-FILE-"]
         if file_path.endswith(".csv"):
             try:

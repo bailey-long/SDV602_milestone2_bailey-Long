@@ -23,6 +23,7 @@ login_layout = [
 def main_screen(username):
     return [
         [sg.Text(f"Welcome, {username}!")],
+        [sg.Text("Select a data exploration screen:")],
         [sg.Button("Tabular"), sg.Button("Chart based"), sg.Button("Time series")],
         [sg.Button("Logout")]
     ]
