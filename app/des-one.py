@@ -1,12 +1,22 @@
 import PySimpleGUI as sg
 import pandas as pd
+import sys
+
+# Get username from the login screen
+if "--username" in sys.argv:
+    # Find the index of "--username" in the command-line arguments
+    index = sys.argv.index("--username")
+
+    # Get the username value from the next argument
+    username = sys.argv[index + 1]
 
 # Define the GUI layout
 layout = [
     [sg.Text("Select a CSV file:")],
+    [sg.Text(f"Welcome, {username}!")],
     [sg.InputText(key="-FILE-"), sg.FileBrowse()],
     [sg.Button("Load"), sg.Button("Exit")],
-    [sg.Multiline("", size=(150, 50), key="-TABLE-")],
+    [sg.Multiline("", size=(150, 30), key="-TABLE-")],
 ]
 
 # Create the window
@@ -43,6 +53,7 @@ while True:
                 table_str = format_table(df)
                 window["-TABLE-"].update(table_str)
             except Exception as e:
+                print(f"Error: {str(e)}")
                 sg.popup_error(f"An error occurred: {str(e)}")
         else:
             sg.popup_error("Please select a valid CSV file.")

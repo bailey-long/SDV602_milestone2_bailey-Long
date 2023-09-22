@@ -12,7 +12,8 @@ dummy_accounts = [
 
 # Define the layout for the login screen
 login_layout = [
-    [sg.Text("Login")],
+    [sg.Text("Historical figures of the dwarf fortress", font=("Helvetica", 20))],
+    [sg.Text("Login", font=("Helvetica", 14))],
     [sg.Text("Username:", size=(10, 1)), sg.InputText(key="-USERNAME-", size=(20, 1), focus=True)],
     [sg.Text("Password:", size=(10, 1)), sg.InputText(key="-PASSWORD-", size=(20, 1), password_char="*")],
     [sg.Button("Login")]
@@ -22,14 +23,14 @@ login_layout = [
 def main_screen(username):
     return [
         [sg.Text(f"Welcome, {username}!")],
-        [sg.Button("Screen 1"), sg.Button("Screen 2"), sg.Button("Screen 3")],
+        [sg.Button("Tabular"), sg.Button("Chart based"), sg.Button("Time series")],
         [sg.Button("Logout")]
     ]
 
 # Create the main window
 window = sg.Window("App", login_layout, resizable=True, finalize=True)
 
-# Get the path to the Python interpreter within the virtual environment
+# Get the path to the Python interpreter within the virtual environment, this is to run another des with a subprocess
 python_exe = sys.executable
 
 # Event loop
@@ -59,13 +60,12 @@ while True:
                 if event == sg.WIN_CLOSED or event == "Logout":
                     main_window.close()
                     break
-                elif event == "Screen 1":
+                elif event == "Tabular":
                     subprocess.run([python_exe, "des-one.py", "--username", username])
-
-                elif event == "Screen 2":
-                    sg.popup("You are on Screen 2")
-                elif event == "Screen 3":
-                    sg.popup("You are on Screen 3")
+                elif event == "Chart based":
+                    subprocess.run([python_exe, "des-two.py", "--username", username])
+                elif event == "Time series":
+                    subprocess.run([python_exe, "des-three.py", "--username", username])
         else:
             sg.popup_error("Invalid username or password")
 
