@@ -15,7 +15,7 @@ layout = [
     [sg.Text(f"Welcome, {username}!")],
     [sg.Text("Select a CSV file:")],
     [sg.InputText(key="-FILE-"), sg.FileBrowse()],
-    [sg.Button("Load"), sg.Button("Exit")],
+    [sg.Button("Load"), sg.Button("Back")],
     [sg.Multiline("", size=(150, 30), key="-TABLE-")],
 ]
 
@@ -42,7 +42,7 @@ def format_table(df):
 while True:
     event, values = window.read()
 
-    if event == sg.WIN_CLOSED or event == "Exit":
+    if event == sg.WIN_CLOSED or event == "Back":
         break
     if event == "Load":
         # Get the selected CSV file path

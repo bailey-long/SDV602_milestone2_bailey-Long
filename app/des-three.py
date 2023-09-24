@@ -17,7 +17,7 @@ layout = [
     [sg.Text(f"Welcome, {username}!")],
     [sg.Text("Select a CSV file:")],
     [sg.InputText(key="csv_file"), sg.FileBrowse()],
-    [sg.Button("Load"), sg.Button("Exit")],
+    [sg.Button("Load"), sg.Button("Back")],
     [sg.Canvas(key="-CANVAS-")],
 ]
 
@@ -28,7 +28,7 @@ window = sg.Window("Scatter Plot App", layout, finalize=True)
 while True:
     event, values = window.read()
 
-    if event == sg.WIN_CLOSED or event == "Exit":
+    if event == sg.WIN_CLOSED or event == "Back":
         break
 
     if event == "Load":
