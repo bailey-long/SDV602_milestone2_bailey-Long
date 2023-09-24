@@ -17,3 +17,6 @@ pip install matplotlib
 ### Run the app  
 Navigate to the app folder with ```cd app```  
 Run ```python home.py```
+
+### Login  
+You can use admin for the username and password to login
