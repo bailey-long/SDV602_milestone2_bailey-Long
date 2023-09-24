@@ -58,6 +58,5 @@ while True:
                 sg.popup_error(f"An error occurred: {str(e)}")
         else:
             sg.popup_error("Please select a valid CSV file.")
-
 # Close the window
 window.close()
